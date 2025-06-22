@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.*;
 
-@Entity
-@Table(name = "Major")
+//@Entity
+//@Table(name = "Major")
 public class Major {
     @Id
     @Column(name = "Id", columnDefinition = "CHAR(2)")

@@ -1,9 +1,9 @@
-package com.thou.superapp.entity.unimany;
+package com.thou.superapp.entity.bidirectional;
 
 import jakarta.persistence.*;
 
-//@Entity
-//@Table(name = "Student")
+@Entity
+@Table(name = "Student")
 public class Student {
     @Id
     @Column(name = "Id", columnDefinition = "CHAR(8)")
@@ -18,31 +18,19 @@ public class Student {
     @Column(name = "GPA")
     private double gpa;
 
-    //private String majorId;
-    //=>KHONG VIET KHOA NGOAI KIEU NAY
-    //VI NO NGHI THEO STYLE TABLE/CSDL => KHONG DUNG TUY DUY OOP
-
-
-    /*
-    NGHI DUNG TU DUY OOP, CAC OBJECT CO MOI QUAN HE
-    STUDENT THAM CHIEU DEN THONG TIN MAJOR - OBJECT
-    co cach de conver tu oop thanh table/pk, join column => ORM MAPPING
-    can 1 thang giup anh xa 2 the gioi de cho tuong thich: JPA/HIBERNATE
-     */
+    //SV THUOC VE 1 MAJOR TAI 1 THOI DIEM, 1 BIEN MAJOR MA THOI, KHONG PHAI LIST NHU BEN KIA
     @ManyToOne
-    @JoinColumn(name = "MajorId")
+    @JoinColumn(name = "MajorId") //ca Major va Student deu co quyen khai bao joincolumn, neu dung uni-directional relationship
+    //gio lam bi-directional, 2 thang nhin qua lai voi nhau, thi ta tra quyen giu joincolumn ve thanh N cho no giong goc nhin table
     private Major major;
-    //lam sao bien nay dc set value de noi rang sv nay thuoc major nao??
-    //ham setMajor() de dua 1 chuyen nganh cho sv dki vao
-
-    public void setMajor(Major obj) {
-        major = obj;
-    }
 
     public Major getMajor() {
         return major;
     }
 
+    public void setMajor(Major major) {
+        this.major = major;
+    }
 
     public Student() {
     }
@@ -88,11 +76,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "gpa=" + gpa +
-                ", id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", yob=" + yob +
-                '}';
+        return String.format("|%3s|%-40s|%4d|%4.1f|", id, name, yob, gpa);
     }
 }
