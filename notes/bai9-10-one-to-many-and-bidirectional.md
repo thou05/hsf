@@ -24,6 +24,7 @@ de ben 1 cung dc thoi
 //gio lam bi-directional, 2 thang nhin qua lai voi nhau, thi ta tra quyen giu joincolumn ve thanh N cho no giong goc nhin table
 ```
 
+
 -----
 ## References
 1.
