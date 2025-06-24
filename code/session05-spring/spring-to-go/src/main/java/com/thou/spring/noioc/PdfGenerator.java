@@ -6,6 +6,6 @@ public class PdfGenerator {
     //gia nhung chay dc => goi la MOCK
     public void generateFile(String fileName) {
         //todo: logic xi li gen ra file pdf...
-        System.out.println("The pdf file " + fileName + " has been generated successfully!!!");
+        System.out.println("The pdf file " + fileName + ".pdf has been generated successfully!!!");
     }
 }
