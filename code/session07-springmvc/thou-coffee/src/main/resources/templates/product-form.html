@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create | Update coffee product</title>
+</head>
+<body>
+<h1>Create | Update coffee product</h1>
+
+<!--TEST THU THONG TIN LOAD DUNG KHONG-->
+<h2 th:text="${test.name}">test</h2>
+
+<!--CAN 1 FORM, DE NHAN NUT SAVE THI LUU TOAN BO INFO SAN PHAM TRONG O NHAP-->
+<!--FORM VA O NHAP LIEU-->
+
+<!--<form th:action="@{/products/save}" th:object="${product}" method="post">-->
+
+<form th:action="@{/products/edit}" method="post">
+    <p>
+        <label for="id">Product id:</label>
+        <input type="text" name="id" th:value="${test.id}" placeholder="Enter product name" id="id"/>
+    </p>
+    <p>
+        <label for="name">Product name:</label>
+        <input type="text" name="name" th:value="${test.name}" placeholder="Enter product name" id="name"/>
+    </p>
+    <p>
+        <label for="price">Product price:</label>
+        <input type="text" name="price" th:value="${test.price}" placeholder="Enter product name" id="price"/>
+    </p>
+
+    <p>
+        <button type="submit">Save</button>
+    </p>
+</form>
+
+
+
+</body>
+</html>
