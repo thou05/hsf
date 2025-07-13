@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,22 +30,48 @@ import java.util.List;
 @Controller  //@RestController neu tra ve JSON, @Controller neu tra ve HTML
 public class ProductController {
 
+    @GetMapping("/msg")
+    public String showMessage(Model model) {
+        //làm sao kay dc name sp cua ben post
+
+        //model o day, ngoai data cua chinh chu ham nay, con nhan them tu ben post gui sang
+
+        return "result";
+    }
+
+
+
     @PostMapping("/products/edit")
     //@RequestParam: gui tung o nhap o form len server, map vao bien hung trong ham
     //ten bien hung khong can giong bien trong form
     //nhung @RequestParam("ten bien o form html thuoc tinh name cua o nhap)
     public String update(Model model, @RequestParam("name") String name,
                          @RequestParam("price") double price,
-                         @RequestParam("id") String id) {
+                         @RequestParam("id") String id, RedirectAttributes redirectAttributes) {
         //ham update 1 san pham xuong db, duoc goi boi viec nhan nut Save
         //se nhan vao cac data go trong o nhap duoc gui len day
 
         model.addAttribute("msg", "Update product success - mock message");
         model.addAttribute("pname", name);
         //thung gom 2 mon: cau thogn bao va ten san pham da edit
+        //2 CAU LENH NAY SE VO DUNG NEU CHOI REDIRECT VI BEN REDIRECT XAI THUNG MODEL KHASC
 
-        return "result";
+
+        //return "result";   //hien tuong resubmission xuat hien
+
+        //gui ke sang ben model/thung cua ham /msg - moi shipper 1 thung rieng
+        redirectAttributes.addFlashAttribute("msg", "Update product success - mock message");
+        redirectAttributes.addFlashAttribute("pname", name);
+        return "redirect:/msg";  //goi url: //localhost:6969/msg
+                                    //url doi tren trinh duyet luon
+                                    //f5 thi la f5 cua result, ko con f5 post nua
     }
+    /*
+    voi ham post (ban chat van la get - nhung gui kem nhieu data khi "get')
+    khi ham post tra ve 1 trang ket qua qua lenh return "ten trang" thi url van giu nguyen
+     */
+
+
 
     @GetMapping("/products/edit/{id}")
     //tach url thanh 2 phan, 1 phan co dinh va 1 phan thay doi
