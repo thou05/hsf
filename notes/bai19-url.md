@@ -26,6 +26,11 @@ Tags:
 
 - request mới - new mới -> update: session
 
+- STATELESS: phi trang thai -> li do phai dung session
+- flash attribute: quên nhanh mỗi lần request/reponse
+
+- trong html: attribute trong tag bi sai -> tag mat luon
+
 -----
 ## References
 1.
