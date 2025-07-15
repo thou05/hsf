@@ -19,10 +19,7 @@ import com.thou.coffee.entity.Category;
 import com.thou.coffee.entity.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -35,7 +32,7 @@ public class ProductController {
     public String create(Model model) {
 
         //gui obj rong va cates cho man hinh tao moi
-        model.addAttribute("test", new Product());
+        model.addAttribute("ariana", new Product());
         model.addAttribute("cates", getCategories());
 
         return "product-form";
@@ -69,18 +66,16 @@ public class ProductController {
 
 
 
-    @PostMapping("/products/edit")
+    @PostMapping("/products/save")
     //@RequestParam: gui tung o nhap o form len server, map vao bien hung trong ham
     //ten bien hung khong can giong bien trong form
     //nhung @RequestParam("ten bien o form html thuoc tinh name cua o nhap)
-    public String update(Model model, @RequestParam("name") String name,
-                         @RequestParam("price") double price,
-                         @RequestParam("id") String id, RedirectAttributes redirectAttributes) {
-        //ham update 1 san pham xuong db, duoc goi boi viec nhan nut Save
-        //se nhan vao cac data go trong o nhap duoc gui len day
+    public String save(Model model, @ModelAttribute("ariana") Product product, RedirectAttributes redirectAttributes) {
+
+        //goi service/repo   ->  save(product) -> save vao database   : 3 layer
 
         model.addAttribute("msg", "Update product success - mock message");
-        model.addAttribute("pname", name);
+        model.addAttribute("pname", product.getName());
         //thung gom 2 mon: cau thogn bao va ten san pham da edit
         //2 CAU LENH NAY SE VO DUNG NEU CHOI REDIRECT VI BEN REDIRECT XAI THUNG MODEL KHASC
 
@@ -89,7 +84,7 @@ public class ProductController {
 
         //gui ke sang ben model/thung cua ham /msg - moi shipper 1 thung rieng
         redirectAttributes.addFlashAttribute("formMsg", "Update/Create product success - mock message");
-        redirectAttributes.addFlashAttribute("pname", name);
+        redirectAttributes.addFlashAttribute("pname", product.getName());
         return "redirect:/products";  //goi url /products de show toan bo sp
     }
     /*
@@ -120,7 +115,7 @@ public class ProductController {
         }
 
         //quan trong: nem vao thung cho trang render!!
-        model.addAttribute("test", selectedProduct);
+        model.addAttribute("ariana", selectedProduct);
 
         //gui them danh sach category
         model.addAttribute("cates", getCategories());
@@ -152,7 +147,7 @@ public class ProductController {
         model.addAttribute("msg", "Helo admin");
 
         //chuan bi 1 danh sach san pham de show ra trang web products.html
-        //hardcode test thu, thu te goi Service, Repo... sau, tiem chich tu dong khong can new
+        //hardcode ariana thu, thu te goi Service, Repo... sau, tiem chich tu dong khong can new
         List<Product> productList = new ArrayList<>();
         productList.add(new Product("TC1", "Cafe den", 35_000));
         productList.add(new Product("TC2", "Cafe sua", 40_000));
