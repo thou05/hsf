@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thou's coffee</title>
+</head>
+<body>
+
+    <h1>WWeo come to thou's coffee - management page</h1>
+
+    <h2 th:text="'ROLE: ' + ${role}">role</h2>
+
+    <form th:action="@{/products}" method="get">
+        <input type="text" name="keyword" placeholder="Input keyword to search products"/>
+        <button type="submit">Search</button>
+    </form>
+
+    <div th:if="${role} == 1">
+        <p>
+            <a href="/products/new">New create</a> |
+            <a href="/products/edit">Edit</a>
+        </p>
+    </div>
+    <p>
+        <a href="/logout">Sign out...</a>
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+    </table>
+</body>
+</html>
