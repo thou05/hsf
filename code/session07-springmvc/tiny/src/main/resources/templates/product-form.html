@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Product form</title>
 </head>
 <body>
+    <h1>Create | Update</h1>
 
+    <form action="/products/save" method="post">
+        <label for="prodname">Product name</label>
+        <input type="text" name="prodname" id="prodname" />
+        <button type="submit">save</button>
+    </form>
 </body>
 </html>

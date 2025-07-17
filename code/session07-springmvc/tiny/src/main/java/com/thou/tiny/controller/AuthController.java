@@ -53,24 +53,5 @@ public class AuthController {
 //        //return "products";
 //    }
 
-    @GetMapping({"/products"})
-    public String showProducts(@RequestParam(name = "keyword", required = false) String keyword, Model model, HttpSession session) {
-
-        //CHAN NGAY TU DAU HAM, KO CAM USER GO URL
-        //SERVER VA CODE MINH SE BLOCK
-        //neu chua login thi vong ve login, doi url luon
-        Integer role = (Integer) session.getAttribute("role");
-        if(role == null) {
-            return "redirect:/login";
-        }
-
-        //XAI KEYWORD DE WHERE TRONG DATABASE, NEU DI CON DUONG SEARCH DI TU LOGIN SANG THI KO CO FIELD KEYWORD LUON
-
-
-        model.addAttribute("role", session.getAttribute("role"));   //lay dc 1 hoac 2
-        return "products";  //products.html
-    }
-    //phan gui ke tu login se bi mat neu f5 vi f5 la goi lai ham
-    //goi ham co thung moi, thung nay ko ai gui ke o lan f5 -> role = null
 
 }
