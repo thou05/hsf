@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create | Edit a product</title>
+</head>
+<body>
+    <h1>Create | Edit a product</h1>
+
+    <form>
+        <p>
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id" th:value="${selectedOne.id}">
+        </p>
+        <p>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" th:value="${selectedOne.name}">
+        </p>
+        <p>
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" th:value="${selectedOne.quantity}">
+        </p>
+        <p>
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" th:value="${selectedOne.price}">
+        </p>
+
+<!--        show danh sach category gom id(hide) name(show)-->
+
+    </form>
+</body>
+</html>
