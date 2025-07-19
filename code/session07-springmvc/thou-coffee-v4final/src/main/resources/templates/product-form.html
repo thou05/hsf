@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create | Edit a product</title>
@@ -7,7 +7,7 @@
 <body>
     <h1>Create | Edit a product</h1>
 
-    <form>
+    <form th:action="@{'/products/save'}" method="post">
         <p>
             <label for="id">ID</label>
             <input type="text" id="id" name="id" th:value="${selectedOne.id}">
@@ -26,6 +26,21 @@
         </p>
 
 <!--        show danh sach category gom id(hide) name(show)-->
+
+        <p>
+            <label for="cate">Category</label>
+            <select id="cate" name="cate">
+                <option th:each="x : ${cates}"
+                        th:value="${x.id}"
+                        th:text="${x.name}"
+                        th:selected="${ selectedOne.cate != null and selectedOne.cate.id == x.id}">x.name</option>
+
+            </select>
+        </p>
+
+        <p>
+            <button type="submit">save</button>
+        </p>
 
     </form>
 </body>
