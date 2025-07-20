@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create | Edit a product</title>
+</head>
+<body>
+    <h1>Create | Edit a product</h1>
+
+    <form th:action="@{'/products/save'}" method="post" th:object="${selectedOne}">
+        <p>
+            <label for="id">ID</label>
+            <input type="text" id="id" th:field="*{id}">
+            <span th:errors="*{id}"  style="color: crimson"></span>
+        </p>
+        <p>
+            <label for="name">Name</label>
+            <input type="text" id="name" th:field="*{name}">
+<!--                                                name="name" value=selectedOne.name-->
+            <span th:errors="*{name}"  style="color: crimson"></span>
+        </p>
+        <p>
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" th:field="*{quantity}">
+            <span th:errors="*{quantity}"  style="color: crimson"></span>
+        </p>
+        <p>
+            <label for="price">Price</label>
+            <input type="number" id="price" th:field="*{price}">
+            <span th:errors="*{price}"  style="color: crimson"></span>
+        </p>
+
+<!--        show danh sach category gom id(hide) name(show)-->
+
+        <p>
+            <label for="cate">Category</label>
+            <select id="cate" th:field="*{cate}">
+                <option th:each="x : ${cates}"
+                        th:value="${x.id}"
+                        th:text="${x.name}"
+                        th:selected="${ selectedOne.cate != null and selectedOne.cate.id == x.id}">x.name</option>
+
+            </select>
+        </p>
+
+        <p>
+            <button type="submit">save</button>
+        </p>
+
+    </form>
+</body>
+</html>
